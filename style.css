@@ -1,0 +1,166 @@
+/* ==================================== */
+/* 1. Thiết lập chung và Skip Link      */
+/* ==================================== */
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Yêu cầu: Skip To Main Content - chỉ hiển thị khi focus */
+.skip-link {
+    position: absolute;
+    left: -9999px; /* Đẩy ra khỏi màn hình */
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    z-index: 9999;
+}
+
+.skip-link:focus {
+    /* Sử dụng position để hiển thị */
+    position: static; 
+    left: auto;
+    top: auto;
+    width: auto;
+    height: auto;
+    overflow: auto;
+    background-color: #ffcc00; /* Màu nền nổi bật */
+    color: #333;
+    padding: 10px;
+    text-align: center;
+    border: 2px solid #333;
+}
+
+/* ==================================== */
+/* 2. Navigation (Yêu cầu: Flexbox + 3 thuộc tính) */
+/* ==================================== */
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Yêu cầu: Áp dụng Flexbox */
+    justify-content: space-around; /* Thuộc tính 1 */
+    align-items: center; /* Thuộc tính 2 */
+    height: 40px; /* Thuộc tính 3 */
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+/* Yêu cầu: Sử dụng :hover cho ít nhất 1 element */
+nav a:hover {
+    background-color: #575757;
+    text-decoration: underline;
+}
+
+/* ==================================== */
+/* 3. Box Model cho Hình Ảnh           */
+/* ==================================== */
+
+/* Yêu cầu: Box Model cho TẤT CẢ ảnh (border, padding, border-radius) */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+
+    /* Yêu cầu Box Model Tối thiểu */
+    border: 4px solid #007bff; 
+    padding: 10px; 
+    border-radius: 15px; 
+
+    /* Hiệu ứng :hover ban đầu */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Yêu cầu: Hiệu ứng :hover thú vị cho ảnh */
+img:hover {
+    transform: scale(1.05) rotate(1deg);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-color: #ff6347; /* Thay đổi màu border khi hover */
+}
+
+/* ==================================== */
+/* 4. Layout: Flexbox và Grid           */
+/* ==================================== */
+
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Trang 2: Flexbox Demo (Container) */
+.flex-container {
+    display: flex; /* Yêu cầu: Áp dụng Flex */
+    gap: 20px;
+    padding: 20px;
+    border: 1px dashed #ccc;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.flex-item {
+    flex-basis: 300px; /* Kích thước cơ sở */
+    text-align: center;
+}
+
+/* Trang 3: Grid Demo (Container) */
+.grid-gallery {
+    display: grid; /* Yêu cầu: Áp dụng Grid */
+    /* Yêu cầu: Ít nhất 2 cột, đây là 3 cột */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 20px;
+    padding: 20px;
+    border: 1px dashed #007bff;
+}
+
+
+/* ==================================== */
+/* 5. Selector :nth-child               */
+/* ==================================== */
+
+/* Yêu cầu: Sử dụng :nth-child */
+.flex-container img:nth-child(2n) { /* Áp dụng cho ảnh thứ 2, 4, 6... trong container Flex */
+    border-radius: 50%; /* Hình tròn */
+    border-color: #28a745;
+}
+
+.grid-gallery img:nth-child(3n+1) { /* Áp dụng cho ảnh thứ 1, 4, 7... trong Grid */
+    transform: rotate(-1deg);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ==================================== */
+/* 6. Footer                            */
+/* ==================================== */
+
+footer {
+    text-align: center;
+    padding: 1em 0;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
